@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import main.forumhub.forumhub.domain.autor.Autor;
 import main.forumhub.forumhub.domain.curso.Curso;
 import main.forumhub.forumhub.domain.resposta.Resposta;
 import main.forumhub.forumhub.domain.usuario.Usuario;

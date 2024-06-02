@@ -6,8 +6,11 @@
 //import lombok.EqualsAndHashCode;
 //import lombok.Getter;
 //import lombok.NoArgsConstructor;
+//import main.forumhub.forumhub.domain.usuario.Usuario;
 //
-//@Entity(name = "Perfis")
+//import java.util.List;
+//
+//@Entity(name = "Perfil")
 //@Table(name = "perfis")
 //@Getter
 //@NoArgsConstructor
@@ -18,4 +21,7 @@
 //@GeneratedValue(strategy = GenerationType.IDENTITY)
 //    private Long id;
 //    private String nome;
+//
+//    @ManyToOne(fetch = FetchType.LAZY) // Assuming Usuario has a 'perfil' field
+//    private List<Usuario> usuarios; // List of associated Usuarios
 //}

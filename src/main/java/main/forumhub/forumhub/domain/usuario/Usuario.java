@@ -8,8 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 
-@Entity(name = "Autor")
-@Table(name = "autores")
+@Entity(name = "Usuario")
+@Table(name = "usuarios")
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,5 +21,5 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
-//    private Perfil perfil;
+
 }

@@ -25,4 +25,19 @@ public class Curso {
     private String nome;
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+
+    public Curso(DadosCadastroCursos dados) {
+        this(null, dados.nome(), dados.categoria());
+    }
+
+    public void atualizarInformacoes(DadosAtualizacaoCurso dados) {
+        if (dados.nome() != null) {
+            this.nome = dados.nome();
+
+        }
+        if (dados.categoria() != null) {
+            this.categoria = dados.categoria();
+        }
+
+    }
 }
