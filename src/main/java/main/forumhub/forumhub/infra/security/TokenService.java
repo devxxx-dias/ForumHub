@@ -15,10 +15,11 @@ import java.time.ZoneOffset;
 @Service
 public class TokenService {
 
-    @Value("${api.security.toke.secret}")
+    @Value("{api.security.toke.secret}")
     private String secret;
 
     public String gerarToken(Usuario usuario) {
+        System.out.println(secret);
         try {
             var algorithm = Algorithm.HMAC256(secret);
             return JWT.create()
@@ -34,7 +35,7 @@ public class TokenService {
     }
 
     private Instant dataExpiracao() {
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-3"));
+        return LocalDateTime.now().plusHours(8).toInstant(ZoneOffset.of("-3"));
     }
 
 
@@ -47,7 +48,7 @@ public class TokenService {
                     .verify(tokenJWT)
                     .getSubject();
         } catch (JWTVerificationException exception) {
-            throw new RuntimeException("Token JWT inválido ou expirado!");
+            throw new RuntimeException("Token JWT inválido ou expirado!", exception);
         }
     }
 

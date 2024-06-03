@@ -16,18 +16,23 @@ import java.time.LocalDate;
 @EqualsAndHashCode(of = "id")
 public class Resposta {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String mensagem;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "topico_id") // Foreign key to 'topicos' table
     private Topico topico;
+
     private LocalDate dataCriacao;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuarios_id") // Foreign key to 'usuarios' table
     private Usuario autor;
+
     private String solucao;
-
-
-
-
 }
+
 

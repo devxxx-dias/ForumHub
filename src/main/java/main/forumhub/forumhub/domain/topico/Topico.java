@@ -27,16 +27,20 @@ public class Topico {
     private LocalDate dataCriacao;
     @Enumerated(EnumType.STRING)
     private EstadoDoTopico estadoDoTopico;
-    @ManyToOne(fetch = FetchType.LAZY) //Usuario
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "usuarios_id")
     private Usuario autor;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "curso_id")
     private Curso curso;
-    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Resposta> resposta;
 
     public void setResposta(List<Resposta> resposta) {
         resposta.forEach(r -> r.setTopico(this));
         this.resposta = resposta;
     }
+
+
 }
 
