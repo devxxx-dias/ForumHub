@@ -31,8 +31,7 @@ public class CursoController {
     @PutMapping
     @Transactional
     public ResponseEntity atualizarCurso(@RequestBody @Valid DadosAtualizacaoCurso dados) {
-        System.out.println(dados);
-        var curso = repository.getReferenceById(dados.id());
+         var curso = repository.getReferenceById(dados.id());
         curso.atualizarInformacoes(dados);
         return ResponseEntity.ok().body(new DadosDetalhadamentoCurso(curso));
     }
