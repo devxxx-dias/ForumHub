@@ -1,20 +1,23 @@
 package main.forumhub.forumhub.domain.topico;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import main.forumhub.forumhub.domain.ValidacaoException;
 import main.forumhub.forumhub.domain.curso.Curso;
+import main.forumhub.forumhub.domain.curso.CursoRepository;
 import main.forumhub.forumhub.domain.resposta.Resposta;
 import main.forumhub.forumhub.domain.usuario.Usuario;
+import main.forumhub.forumhub.domain.usuario.UsuarioRepository;
+import main.forumhub.forumhub.infra.security.TokenService;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "Topico")
 @Table(name = "topicos")
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
@@ -24,7 +27,7 @@ public class Topico {
     private Long id;
     private String titulo;
     private String mensagem;
-    private LocalDate dataCriacao;
+    private LocalDateTime dataCriacao;
     @Enumerated(EnumType.STRING)
     private EstadoDoTopico estadoDoTopico;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -36,9 +39,31 @@ public class Topico {
     @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Resposta> resposta;
 
+
+
+
+//    public Topico(Long id, String titulo, String mensagem, LocalDateTime now, EstadoDoTopico estadoDoTopico, Usuario autor, Curso curso, Resposta resposta) {
+//    }
+
+
     public void setResposta(List<Resposta> resposta) {
         resposta.forEach(r -> r.setTopico(this));
         this.resposta = resposta;
+    }
+
+
+    public void atualizarInformacoes(DadosCadastroTopico dados) {
+        if (dados.titulo() != null) {
+            this.titulo = dados.titulo();
+        }
+        if (dados.mensagem() != null) {
+            this.mensagem = dados.mensagem();
+        }
+
+
+
+
+
     }
 
 

@@ -1,6 +1,5 @@
 package main.forumhub.forumhub.domain.usuario;
 
-//PAREI NA PARTE DE TESTAR NO INSOMNIA
 
 import jakarta.persistence.*;
 import lombok.*;
