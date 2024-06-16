@@ -92,20 +92,14 @@ public class RespostaControllerTest {
 
         when(respository.save(any())).thenReturn(resposta);
 
-//        var response = mvc
-//                .perform(post("/respostas")
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content(dadosCadastroRespostaJson.write(dadosCadastro).getJson()))
-//                .andReturn().getResponse();
-
-
+        //Insira o token gerado
         String token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmb3J1bWh1YiIsInN1YiI6Im1hcmlhQGVtYWlsLmNvbSIsImV4cCI6MTcxODU4MjkzMX0.jFZ043_ZMc3MzE83LItmpqq1z9bFhpDhNT-6UqzNTYU"; // Replace with a valid mock token
 
         var response = mvc.perform(post("/respostas")
                         .header(HttpHeaders.AUTHORIZATION, token)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(dadosCadastroRespostaJson.write(dadosCadastro).getJson()))
-                             .andReturn().getResponse();
+                .andReturn().getResponse();
 
         var dadosDetalhadamento = new DadosDetalhadamentoResposta(resposta);
 
