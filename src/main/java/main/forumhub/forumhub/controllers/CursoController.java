@@ -37,8 +37,8 @@ public class CursoController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemCurso>> listarCursos(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
-        var page = repository.findAll(paginacao).map(DadosListagemCurso::new);
+    public ResponseEntity<Page<DadosDetalhadamentoCurso>> listarCursos(@PageableDefault(size = 10, sort = {"nome"}) Pageable paginacao) {
+        var page = repository.findAll(paginacao).map(DadosDetalhadamentoCurso::new);
         return ResponseEntity.ok(page);
     }
 

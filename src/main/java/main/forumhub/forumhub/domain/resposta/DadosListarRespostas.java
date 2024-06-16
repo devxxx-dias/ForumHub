@@ -1,18 +1,14 @@
 package main.forumhub.forumhub.domain.resposta;
 
-import com.fasterxml.jackson.annotation.JsonAlias;
-
 import java.time.LocalDateTime;
 
 public record DadosListarRespostas(
         Long id,
         String nome,
-        @JsonAlias("Autor_Id")
-        Long usuarioId,
+        Long autor_Id,
         Long idTopico,
         LocalDateTime dataCriacao,
-        @JsonAlias("Sugestao")
-        String mensagem,
+        String sugestao,
         StatusResposta status
 ) {
 

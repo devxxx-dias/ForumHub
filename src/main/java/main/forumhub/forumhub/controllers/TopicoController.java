@@ -2,7 +2,7 @@ package main.forumhub.forumhub.controllers;
 
 import jakarta.validation.Valid;
 import main.forumhub.forumhub.domain.ValidacaoException;
-import main.forumhub.forumhub.domain.curso.*;
+import main.forumhub.forumhub.domain.curso.CursoRepository;
 import main.forumhub.forumhub.domain.topico.*;
 import main.forumhub.forumhub.domain.usuario.Usuario;
 import main.forumhub.forumhub.domain.usuario.UsuarioRepository;
@@ -16,8 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RestController
@@ -45,8 +43,6 @@ public class TopicoController {
     public ResponseEntity cadastrarTopico(@RequestHeader("Authorization") String token, @RequestBody @Valid DadosCadastroTopico dados, UriComponentsBuilder uriBuilder) {
         var email = tokenService.getSubject(token.replace("Bearer ", "").trim());
         Usuario autor = usuarioRepository.getReferenceByEmail(email);
-        System.out.println("Checando " + autor.toString());
-
         var curso = cursoRepository.localizarCurso(dados.nomeCurso());
         if (curso == null) {
             throw new ValidacaoException(" O Curso nao consta na nossa lista de cursos cadastrado ");
@@ -71,7 +67,7 @@ public class TopicoController {
 
 
     @GetMapping
-    public ResponseEntity<Page<DadosListarTopicos>> listarTopicos(@PageableDefault(size = 10, sort = {"titulo"}) Pageable paginacao) {
+    public ResponseEntity<Page<DadosListarTopicos>> listarTopicos(@PageableDefault(size = 10, sort = {"data"}) Pageable paginacao) {
         var page = topicoRepository.findAll(paginacao).map(DadosListarTopicos::new);
         return ResponseEntity.ok(page);
 

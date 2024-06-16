@@ -47,7 +47,7 @@ public class RespostaController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListarRespostas>> listarRespostas(@PageableDefault(size = 10, sort = {"dataCriacao"}) Pageable paginacao) {
+    public ResponseEntity<Page<DadosListarRespostas>> listarRespostas(@PageableDefault(size = 10, sort = {"status"}) Pageable paginacao) {
         var page = respostaRespository.findAll(paginacao).map(DadosListarRespostas::new);
 
         return ResponseEntity.ok(page);

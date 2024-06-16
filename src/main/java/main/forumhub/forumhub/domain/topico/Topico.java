@@ -2,14 +2,9 @@ package main.forumhub.forumhub.domain.topico;
 
 import jakarta.persistence.*;
 import lombok.*;
-import main.forumhub.forumhub.domain.ValidacaoException;
 import main.forumhub.forumhub.domain.curso.Curso;
-import main.forumhub.forumhub.domain.curso.CursoRepository;
 import main.forumhub.forumhub.domain.resposta.Resposta;
 import main.forumhub.forumhub.domain.usuario.Usuario;
-import main.forumhub.forumhub.domain.usuario.UsuarioRepository;
-import main.forumhub.forumhub.infra.security.TokenService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,12 +33,6 @@ public class Topico {
     private Curso curso;
     @OneToMany(mappedBy = "topico", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Resposta> resposta;
-
-
-
-
-//    public Topico(Long id, String titulo, String mensagem, LocalDateTime now, EstadoDoTopico estadoDoTopico, Usuario autor, Curso curso, Resposta resposta) {
-//    }
 
 
     public void setResposta(List<Resposta> resposta) {

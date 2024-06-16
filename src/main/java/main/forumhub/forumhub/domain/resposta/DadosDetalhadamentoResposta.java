@@ -7,12 +7,10 @@ import java.time.LocalDateTime;
 public record DadosDetalhadamentoResposta(
         Long id,
         String nome,
-        @JsonAlias("Autor_Id")
-        Long usuarioId,
+        Long autor_Id,
         Long idTopico,
         LocalDateTime dataCriacao,
-        @JsonAlias("Sugestao")
-        String mensagem,
+        String sugestao,
         StatusResposta status
 
         ) {
